@@ -9,6 +9,11 @@ console.log(CompiledFunction({
 const express = require('express');
 const app = express();
 const port = 3050;
+var users = [
+			{id: 1, name:'Truong Quoc Bao'},
+			{id: 2, name:'Nguyen Gia Huy'},
+			{id: 3, name:'Tran Quoc Khanh'}
+		];
 
 app.set('view engine','pug');
 app.set('views','./views');
@@ -21,14 +26,18 @@ app.get('/', (req, res) => {
 
 app.get('/students', (req, res) => {
 	res.render('students/index', {
-		users: [
-			{id: 1, name:'Truong Quoc Bao'},
-			{id: 2, name:'Nguyen Gia Huy'},
-			{id: 3, name:'Tran Quoc Khanh'}
-		]
+		users: users,
 	});
 });
 
+app.get('/students/Search', (req, res) => {
+	var matchedResult = users.filter((user) => {		
+		return user.name.toLowerCase().indexOf(req.query.fname.toLowerCase()) > -1;
+	})
+	res.render('students/search', {
+		students: matchedResult
+	});
+});
 app.listen(port, () => {
 	console.log('Server listening on port ' + port);
 });
