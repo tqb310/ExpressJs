@@ -1,6 +1,8 @@
-h1 Class
+h1 Class List
 
-p
-	a(href='/students' style="text-decoration: none") Danh sách lớp #{classes}
+ul
+	each classe in classes
+		li
+			a(href='/students' style="text-decoration: none")= classe.class
 
 

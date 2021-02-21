@@ -1,6 +1,10 @@
+h1 Student List of #{classes}
+
+button(title='Create a new student')
+	a(href='/students/create' style="text-decoration: none") Create 
 form( action="/students/Search", method="GET")
 	input(type="text", name="fname")
 	button Search
 ul 
-	each user in users
-		li= user.name
+	each student in students
+		li= student.name
