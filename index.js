@@ -9,16 +9,14 @@ console.log(CompiledFunction({
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const lowdb = require('lowdb');
+const FileSync = require('lowdb/adapters/FileSync');
+const adapter = new FileSync('db.json');
+db = lowdb(adapter);
+
+db.defaults( { students: [] } ).write();
 const port = 3050;
-var students = [
-			{id: 1, name:'Truong Quoc Bao', cId: 3},
-			{id: 2, name:'Nguyen Gia Huy', cId: 3},
-			{id: 3, name:'Tran Quoc Khanh', cId: 3},
-			{id: 4, name:'Nguyen Thi Ngoc Hue', cId: 2},
-			{id: 5, name:'Vo Ngoc Tan', cId: 2},
-			{id: 6, name:'Dang Ngoc Liem', cId: 1},
-			{id: 7, name:'Nguyen Quoc Trong', cId: 1},
-		];
+
 var classes =  [
 			{id: 1, class:'12A1'},
 			{id: 2, class:'12A2'},
@@ -27,7 +25,8 @@ var classes =  [
 //--Set view engine Pug
 app.set('view engine','pug');
 app.set('views','./views');
-//-Use body-parser
+
+//--Use body-parser
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.get('/', (req, res) => {
@@ -39,7 +38,7 @@ app.get('/', (req, res) => {
 app.get('/students', (req, res) => {
 
 	res.render('students/index', {
-		students: students,
+		students: db.get("students").value(),
 	});
 });
 
@@ -57,7 +56,7 @@ app.get('/students/create', (req, res) => {
 })
 
 app.post('/students/create', (req, res) => {
-	students.push(req.body);
+	db.get("students").push(req.body).write();
 	res.redirect('/students');
 })
 app.listen(port, () => {
