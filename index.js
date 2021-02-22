@@ -22,6 +22,14 @@ var classes =  [
 			{id: 2, class:'12A2'},
 			{id: 3, class:'12A3'},
 		]
+var students = [
+			{id: 1, name:'Truong Quoc Bao', cId:3},
+			{id: 2, name:'Nguyen Gia Huy', cId:3},
+			{id: 3, name:'Vo Ngoc Tan', cId:2},
+			{id: 4, name:'Nguyen Thi Ngoc Hue', cId:2},
+			{id: 5, name:'Vo Tran Chuong', cId:1},
+			{id: 6, name:'Dang Ngoc Liem', cId:1},
+]
 //--Set view engine Pug
 app.set('view engine','pug');
 app.set('views','./views');
@@ -35,10 +43,13 @@ app.get('/', (req, res) => {
 	});
 });
 
-app.get('/students', (req, res) => {
-
+app.get('/:cId', (req, res) => {
+	var id = parseInt(req.params.cId);
 	res.render('students/index', {
-		students: db.get("students").value(),
+		students: students.filter(item => {return item.cId == id}),
+		classes: classes.reduce((item1, item2) => {
+			 return item1 + (item2.id == id ? item2.class : '');
+		}, '')
 	});
 });
 
@@ -56,6 +67,7 @@ app.get('/students/create', (req, res) => {
 })
 
 app.post('/students/create', (req, res) => {
+	req.body.id 
 	db.get("students").push(req.body).write();
 	res.redirect('/students');
 })

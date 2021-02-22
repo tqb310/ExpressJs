@@ -1,11 +1,4 @@
 {
   "users": [],
-  "students": [
-    {
-      "name": "Truong Quoc Bao"
-    },
-    {
-      "name": "Nguyen Gia Huy"
-    }
-  ]
+  "students": []
 }
