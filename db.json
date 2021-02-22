@@ -1,4 +1,10 @@
 {
-  "users": [],
-  "students": []
+  "students": [
+    {
+      "name": "Nguyen Quoc Truong"
+    },
+    {
+      "name": "Nguyen Quoc Truong"
+    }
+  ]
 }
