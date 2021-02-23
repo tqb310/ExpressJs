@@ -1,3 +1,5 @@
-ul 
-	each student in students
-		li= student.name
+extends ../layouts/common.pug
+block content
+	ul 
+		each student in students
+			li= student.name

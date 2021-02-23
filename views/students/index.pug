@@ -1,10 +1,14 @@
-h1 Student List of #{classes}
-div(style="display: flex;")
-	button(title='Create a new student' style="margin-right: 2%; height: 50%")
-		a(href='/class/'+cId+'/create', style="text-decoration: none") Create 
-	form( action="/class/"+cId+"/Search", method="GET")
-		input(type="text", name="fname")
-		button Search
-ul 
-	each student in students
-		li= student.name
+extends ../layouts/common.pug
+
+block content
+	h1 Student List of #{classes}
+	.d-flex
+		button(title='Create a new student' class="me-3 btn btn-success alpha")
+			a(href='/class/'+cId+'/create', style="text-decoration: none; color: white") Create 
+		form( action="/class/"+cId+"/Search", method="GET")
+			.d-flex
+				input(type="text", name="fname", class="form-control me-2")
+				button(class="btn btn-primary") Search
+	ul 
+		each student in students
+			li= student.name

@@ -1,8 +1,11 @@
-h1 Class List
+extends ./layouts/common.pug
 
-ul
-	each classe in classes
-		li
-			a(href='/class/'+classe.id style="text-decoration: none")= classe.class
+block content
+	h1 Class List
+
+	ul
+		each classe in classes
+			li
+				a(href='/class/'+classe.id style="text-decoration: none")= classe.class
 
 
