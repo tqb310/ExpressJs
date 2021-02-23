@@ -1,26 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const router = express.Router();
-const db = require('../db.js')
-const data = require('../data');
+//const db = require('../db.js')
+const studentController = require('../controllers/student.controller.js')
 
-var students = data.students;
-router.get('/Search', (req, res) => {
-	var matchedResult = students.filter((student) => {		
-		return student.name.toLowerCase().indexOf(req.query.fname.toLowerCase()) > -1;
-	})
-	res.render('students/search', {
-		students: matchedResult
-	});
-});
+router.get('/:cId/Search', studentController.searchStudent);
 
-router.get('/create', (req, res) => {
-	res.render('students/create')
-})
+router.get('/:cId/create', studentController.getCreate);
 
-router.post('/create', (req, res) => {
-	students.push(req.body);
-	res.redirect('/class');
-})
+router.post('/:cId/create', studentController.postCreate);
 
 module.exports = router;

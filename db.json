@@ -1,10 +1,28 @@
 {
   "students": [
     {
-      "name": "Nguyen Quoc Truong"
+      "name": "Truong Quoc Bao",
+      "cId": "1",
+      "id": "ur58zAJz0"
     },
     {
-      "name": "Nguyen Quoc Truong"
+      "name": "Nguyen Gia Huy",
+      "cId": "3",
+      "id": "gdc5QRpjg"
+    }
+  ],
+  "class": [
+    {
+      "id": 1,
+      "class": "12A1"
+    },
+    {
+      "id": 2,
+      "class": "12A2"
+    },
+    {
+      "id": 3,
+      "class": "12A3"
     }
   ]
 }

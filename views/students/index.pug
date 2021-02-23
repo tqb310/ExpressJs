@@ -1,10 +1,10 @@
 h1 Student List of #{classes}
-
-button(title='Create a new student')
-	a(href='/students/create' style="text-decoration: none") Create 
-form( action="/students/Search", method="GET")
-	input(type="text", name="fname")
-	button Search
+div(style="display: flex;")
+	button(title='Create a new student' style="margin-right: 2%; height: 50%")
+		a(href='/class/'+cId+'/create', style="text-decoration: none") Create 
+	form( action="/class/"+cId+"/Search", method="GET")
+		input(type="text", name="fname")
+		button Search
 ul 
 	each student in students
 		li= student.name
